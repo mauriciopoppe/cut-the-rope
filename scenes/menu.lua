@@ -14,40 +14,40 @@ local button = require "scripts.button"
 function scene:create(event)
 	local group = self.view
 	local background = display.newImageRect("images/menubg.jpg", 1024, 576)
-	background.x = halfX
-	background.y = halfY
+	background.x = display.contentWidth / 2
+	background.y = display.contentHeight / 2
 	background.rotation = 90
 	group:insert(background)
 
 	local gameTitle = display.newImageRect("images/logo.png", 339, 301)
-	gameTitle.x = halfX
-	gameTitle.y = halfY - 80
+	gameTitle.x = display.contentWidth / 2
+	gameTitle.y = display.contentHeight / 2 - 80
 	group:insert(gameTitle)
 
 	local function onPlayButtonRelease()
+        audio.stop()
+        audio.play(sound.game, {
+            loops = -1,
+            fadeIn = 500
+        })
 		composer.gotoScene("scenes.game", "fade", 500)
 	end
 
 	local playButton = button.factory('Play', onPlayButtonRelease)
-	playButton.x = halfX
-	playButton.y = halfY + 200
+	playButton.x = display.contentWidth / 2
+	playButton.y = display.contentHeight / 2 + 200
 	group:insert(playButton)
 
-	-- sound
-	audio.play( sound.menu )
 end
 
 function scene:show(event)
 	local sceneGroup = self.view
 	local phase = event.phase
 
-	if (phase == "will") then
-		local prevScene = composer.getSceneName( "current" )
-		if (composer.getSceneName(prevScene) ~= nil) then
-			composer.purgeScene(prevScene)
-			composer.removeScene(prevScene)
-		end
-	end
+    if (phase == "will") then
+        audio.stop()
+        audio.play(sound.menu)
+    end
 end
 
 scene:addEventListener( "create", scene )

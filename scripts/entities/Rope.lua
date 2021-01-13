@@ -23,9 +23,9 @@ function Rope:new(x1, y1, x2, y2, n)
 			local x = x1 + (x2 - x1) * i / n
 			local y = y1 + (y2 - y1) * i / n
 			local segment = display.newCircle( x, y, 5 )
-			physics.addBody( segment, {
-					density = 0.1, radius = 10, isSensor = true
-				} )
+			physics.addBody(segment, {
+                density = 0.1, radius = 10, isSensor = true
+            })
 			segment:setFillColor(135/255, 89/255, 50/255)
 			table.insert( self.segments, segment )
 		end

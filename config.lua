@@ -4,26 +4,9 @@ application = {
 		height = 960,
 		scale = "letterBox",
 		fps = 60,
-
-		---[[
         imageSuffix = {
 		    ["@2x"] = 2,
 		}
-		--]]
 	},
     showRuntimeErrors = true
-    --[[
-    -- Push notifications
-
-    notification =
-    {
-        iphone =
-        {
-            types =
-            {
-                "badge", "sound", "alert", "newsstand"
-            }
-        }
-    }
-    --]]
 }

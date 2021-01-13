@@ -31,9 +31,9 @@ function scene:create( event )
     -- physics.setDrawMode( "hybrid" )
 
     -- bg
-    local background = display.newImageRect( "images/levelbg1.jpg", 640, 960 )
-    background.x = halfX
-    background.y = halfY
+    local background = display.newImageRect( "images/levelbg1.jpg", display.contentWidth, display.contentHeight )
+    background.x = display.contentWidth / 2
+    background.y = display.contentHeight / 2
     group:insert(background)
 
     -- touch helper
@@ -86,7 +86,7 @@ function scene:create( event )
         -- end
     end )
 
-    local reload = display.newCircle( group, X - 40, 40, 20 )
+    local reload = display.newCircle( group, display.contentWidth - 40, 40, 20 )
     reload:addEventListener( 'touch', function (e)
         if e.phase == 'began' then
             local currScene = composer.getSceneName( "current" )
@@ -96,11 +96,14 @@ function scene:create( event )
         end
     end )
 
-    audio.stop()
-    audio.play(sound.game, {
-        loops = -1,
-        fadeIn = 500
-    })
+    local back = display.newCircle( group, display.contentWidth - 40, 80, 20 )
+    back:addEventListener( 'touch', function (e)
+        if e.phase == 'began' then
+            composer.removeScene(composer.getSceneName('current'))
+            composer.gotoScene('scenes.menu')
+            return true
+        end
+    end)
 end
 
 -- Called when the scene's view does not exist:
@@ -112,14 +115,14 @@ function scene:show( event )
 
         -- add world objects
         self.omnom = OmNom:new()
-        self.omnom:translate(halfX, Y - 100)
+        self.omnom:translate(display.contentWidth / 2, display.contentHeight - 100)
         self.omnom:idleAnimation()
 
         self.hooks = {}
 
         -- candy :)
         self.candy = Candy:new()
-        self.candy:setPosition(halfX + 200, 100)
+        self.candy:setPosition(display.contentWidth / 2 + 200, 100)
         self.candy.sprite:addEventListener( 'candyIsDead', function(e)
             self.omnom:sadAnimation()
             timer.performWithDelay( 1000, function ()
@@ -133,16 +136,16 @@ function scene:show( event )
         local hook
         -- initially the candy is joined to this hook
         hook = Hook:new()
-        hook:setPosition(halfX, 100)
+        hook:setPosition(display.contentWidth / 2, 100)
         hook:join(self.candy)
         table.insert( self.hooks, hook )
 
         hook = Hook:new()
-        hook:setPosition(X - 100, halfY - 100)
+        hook:setPosition(X - 100, display.contentHeight / 2 - 100)
         table.insert( self.hooks, hook )
 
         hook = Hook:new()
-        hook:setPosition(halfX, halfY)
+        hook:setPosition(display.contentWidth / 2, display.contentHeight / 2)
         table.insert( self.hooks, hook )
     end
 end
