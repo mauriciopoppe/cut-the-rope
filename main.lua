@@ -5,10 +5,14 @@
 -----------------------------------------------------------------------------------------
 
 -- hide the status bar
-display.setStatusBar( display.HiddenStatusBar )
+display.setStatusBar(display.HiddenStatusBar)
 
 -- Globals
 X,Y = display.contentWidth, display.contentHeight
+globals = {
+    WIDTH = display.contentWidth,
+    HEIGHT = display.contentHeight
+}
 halfX, halfY = X * 0.5, Y * 0.5
 centerX, centerY = display.contentCenterX, display.contentCenterY
 
@@ -20,4 +24,4 @@ GeometricUtils = require 'scripts.utils.GeometricUtils'
 local composer = require "composer"
 
 -- Load menu screen
-composer.gotoScene( "menu" )
+composer.gotoScene("scenes.menu")

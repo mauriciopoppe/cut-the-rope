@@ -25,7 +25,7 @@ function scene:create(event)
 	group:insert(gameTitle)
 
 	local function onPlayButtonRelease()
-		composer.gotoScene("game", "fade", 500)
+		composer.gotoScene("scenes.game", "fade", 500)
 	end
 
 	local playButton = button.factory('Play', onPlayButtonRelease)
