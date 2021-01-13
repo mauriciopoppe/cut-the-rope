@@ -1,6 +1,6 @@
 # Cut the Rope
 
-A corona game where I try to code one of my favorite games: [Cut the rope](https://cuttherope.net/),
+An attempt to code one of my favorite games: [Cut the rope](https://cuttherope.net/)
 
 **Done for educational purposes only!**
 
