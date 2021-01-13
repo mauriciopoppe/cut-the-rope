@@ -141,7 +141,7 @@ function scene:show( event )
         table.insert( self.hooks, hook )
 
         hook = Hook:new()
-        hook:setPosition(X - 100, display.contentHeight / 2 - 100)
+        hook:setPosition(display.contentWidth - 100, display.contentHeight / 2 - 100)
         table.insert( self.hooks, hook )
 
         hook = Hook:new()

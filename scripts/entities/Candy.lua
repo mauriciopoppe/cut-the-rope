@@ -38,7 +38,7 @@ function Candy:new()
     end
 
     function candy:enterFrame(e)
-        if self.sprite and self.sprite.y > Y then
+        if self.sprite and self.sprite.y > display.contentHeight then
             if not self.timer then
                 self.timer = timer.performWithDelay( 1000, function (e)
                     Runtime:removeEventListener( 'enterFrame', candy )
